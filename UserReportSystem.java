@@ -43,7 +43,7 @@ public class UserReportSystem extends RouteBuilder {
                     .end();
 
         from("direct:audit")
-                .to("knative:channel/audit");
+                .to("log:info");
 
         from("direct:log")
                 .convertBodyTo(String.class)

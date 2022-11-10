@@ -42,7 +42,7 @@ function renderTimelineInfoIncident(obj) {
 $(document).ready(function () {
     var path = $('[timeline]').attr('data-api')
 
-    var url = "changeme" + path;
+    var url = "$URL" + path;
 
     axios.get(url).then(function (response) {
         // console.log("Received " + response.data);
