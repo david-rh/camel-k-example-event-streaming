@@ -42,7 +42,8 @@ function renderTimelineInfoIncident(obj) {
 $(document).ready(function () {
     var path = $('[timeline]').attr('data-api')
 
-    var url = "http://timeline-bridge-camel-k-event-streaming.apps.ocp1.casaanderson.home" + path;
+    // Base url set by config/timelineurl.js
+    var url = url + path;
 
     axios.get(url).then(function (response) {
         // console.log("Received " + response.data);

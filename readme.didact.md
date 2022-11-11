@@ -379,15 +379,21 @@ The front-end image leverages the official [Apache Httpd 2.4](https://access.red
 We can proceed to creating the build configuration and starting the build within the OpenShift cluster. The
 following command replaces the URL for the timeline API on the Javascript code and launches an image build.
 
+```
+URL=$(oc get route timeline-bridge -ojsonpath={.spec.port.targetPort}://{.spec.host}); oc create configmap timeline-config --from-literal=timelineurl.js="var url=\"${URL}\;\""
+```
 
-```URL=$(oc get ksvc timeline-bridge -o 'jsonpath={.status.url}') ; cat ./front-end/Dockerfile| oc new-build --docker-image="registry.access.redhat.com/rhscl/httpd-24-rhel7:latest" --to=front-end --build-arg="URL=$URL" -D -```
+```
+oc new-app httpd:2.4-ubi8~https://github.com/david-rh/camel-k-example-event-streaming.git --name front-end --context-dir /front-end/src/main/resources/site
+```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=camelTerm$$URL%3D%24(oc%20get%20ksvc%20timeline-bridge%20-o%20%27jsonpath%3D%7B.status.url%7D%27)%20%3B%20cat%20.%2Ffront-end%2FDockerfile%7C%20oc%20new-build%20--docker-image%3D%22registry.access.redhat.com%2Frhscl%2Fhttpd-24-rhel7%3Alatest%22%20--to%3Dfront-end%20--build-arg%3D%22URL%3D%24URL%22%20-D%20-&completion=Created%20the%20build%20configuration. "Creates the build configuration"){.didact})
-
+```
+oc set volumes deployment/front-end --add --type configmap --mount-path "/opt/app-root/src/js/config" --configmap-name timeline-config
+```
 
 With the build complete, we can go ahead and create a deployment for the front-end:
 
-```oc apply -f front-end/front-end.yaml```
+```oc expose service/front-end```
 
 ([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=camelTerm$$oc%20apply%20-f%20front-end%2Ffront-end.yaml&completion=Deployed%20the%20front-end. "Deploys the front-end"){.didact})
 
