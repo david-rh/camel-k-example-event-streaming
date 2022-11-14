@@ -380,7 +380,7 @@ We can proceed to creating the build configuration and starting the build within
 following command replaces the URL for the timeline API on the Javascript code and launches an image build.
 
 ```
-URL=$(oc get route timeline-bridge -ojsonpath={.spec.port.targetPort}://{.spec.host}); oc create configmap timeline-config --from-literal=timelineurl.js="var url=\"${URL}\"\;"
+URL=$(oc get route timeline-bridge -ojsonpath={.spec.port.targetPort}://{.spec.host}); oc create configmap timeline-config --from-literal=timelineurl.js="var url=\"${URL}\";"
 ```
 
 ```
