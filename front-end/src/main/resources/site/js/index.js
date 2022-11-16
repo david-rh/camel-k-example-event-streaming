@@ -43,9 +43,9 @@ $(document).ready(function () {
     var path = $('[timeline]').attr('data-api')
 
     // Base url set by config/timelineurl.js
-    var url = url + path;
+    var urlpath = url + path;
 
-    axios.get(url).then(function (response) {
+    axios.get(urlpath).then(function (response) {
         // console.log("Received " + response.data);
 
         var container = document.getElementById('timeline');
