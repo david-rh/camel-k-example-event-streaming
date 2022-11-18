@@ -395,17 +395,9 @@ With the build complete, we can go ahead and create a deployment for the front-e
 
 ```oc expose service/front-end```
 
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=camelTerm$$oc%20apply%20-f%20front-end%2Ffront-end.yaml&completion=Deployed%20the%20front-end. "Deploys the front-end"){.didact})
-
 The last thing missing is finding the URL for the front-end so that we can open it on the browser.
 
-To find the public API for the service, we can run the following command:
 
-```oc get routes front-end-external -o 'jsonpath={.spec.port.targetPort}://{.spec.host}'```
-
-([^ execute](didact://?commandId=vscode.didact.sendNamedTerminalAString&text=camelTerm$$oc%20get%20routes%20front-end-external%20-o%20%27jsonpath=%7B.spec.port.targetPort%7D:%2F%2F%7B.spec.host%7D%27&completion=Found%20the%20front-end%20URL. "Gets the front-end URL"){.didact})
-
-Open this URL on the browser and we can now access the front-end.
 
 ## 4. Uninstall
 
