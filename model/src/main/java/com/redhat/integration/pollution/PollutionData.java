@@ -53,7 +53,7 @@ public class PollutionData {
     private String country;
     private String city;
     private boolean isMobile;
-    private Boolean isAnalysis;
+    private boolean isAnalysis;
 
 
     public int getLocationId() {
@@ -153,11 +153,11 @@ public class PollutionData {
        this.isMobile = isMobile;
     }
 
-    public Boolean getIsAnalysis() {
+    public boolean getIsAnalysis() {
        return this.isAnalysis;
     }
 
-    public void setIsAnalysis(Boolean isAnalysis) {
+    public void setIsAnalysis(boolean isAnalysis) {
        this.isAnalysis = isAnalysis;
     }
 
